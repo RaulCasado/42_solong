@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:14:27 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/27 12:06:05 by racasado         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:38:15 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	validate_map(char **map)
 int	main(int argc, char **argv)
 {
 	char	**map;
-
+	t_game game;
 	if (argc != 2)
 	{
 		write(2, "Uso: ./so_long <archivo.ber>\n", 29);
@@ -80,6 +80,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	printf("Mapa cargado correctamente\n");
 	show_each_map_letter(map);
+	init_window(&game);
 	free_map(map);
 	return (EXIT_SUCCESS);
 }
