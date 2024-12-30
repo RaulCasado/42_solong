@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:14:27 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/27 13:38:15 by racasado         ###   ########.fr       */
+/*   Updated: 2024/12/30 13:54:00 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 {
 	char	**map;
 	t_game game;
+	int res;
 	if (argc != 2)
 	{
 		write(2, "Uso: ./so_long <archivo.ber>\n", 29);
@@ -80,7 +81,13 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	printf("Mapa cargado correctamente\n");
 	show_each_map_letter(map);
-	init_window(&game);
+	res = init_window(&game, map);
+	if (!res)
+	{
+		write(2, "Error: No se pudo inicializar la ventana.\n", 41);
+		return (EXIT_FAILURE);
+	}
+	printf("hola\n");
 	free_map(map);
 	return (EXIT_SUCCESS);
 }
