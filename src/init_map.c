@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:44:10 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/27 12:13:03 by racasado         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:04:44 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ static char	**read_lines_to_map(int fd, size_t line_count)
 		map[i] = malloc(ft_strlen(line) + 1);
 		if (!map[i])
 		{
-			free_map(map);
+			while (i-- > 0)
+				free(map[i]);
+			free(map);
 			free(line);
 			return (NULL);
 		}

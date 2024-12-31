@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:46:35 by raul              #+#    #+#             */
-/*   Updated: 2024/12/30 14:01:23 by raul             ###   ########.fr       */
+/*   Updated: 2024/12/30 22:09:48 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,26 @@ void	player_position(char **map, int *player_x, int *player_y)
 		}
 		i++;
 	}
+}
+
+int count_collectibles(char **map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
 }

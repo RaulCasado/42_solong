@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:32:10 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/30 14:01:22 by raul             ###   ########.fr       */
+/*   Updated: 2024/12/31 12:19:32 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,9 @@
 
 int	close_window(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
+	free_game(game);
 	exit(0);
 }
-
-int key_hook(int keycode, void *param)
-{
-    t_game *game = (t_game *)param; // Convertir void * a t_game *
-
-    int player_x = 0;
-    int player_y = 0;
-
-    show_each_map_letter(game->map);  // Usamos game->map, que está en t_game
-    player_position(game->map, &player_x, &player_y);
-    printf("player_x: %d\n", player_x);
-    printf("player_y: %d\n", player_y);
-    printf("keycode: %d\n", keycode);
-
-    if (keycode == 65307)
-        close_window(game);
-
-    if (keycode == 119 || keycode == 65362)
-    {
-        if (game->map[player_y - 1][player_x] != '1')
-        {
-            game->map[player_y][player_x] = '0';
-            game->map[player_y - 1][player_x] = 'P';
-        }
-    }
-    else if (keycode == 115 || keycode == 65364)
-    {
-        if (game->map[player_y + 1][player_x] != '1')
-        {
-            game->map[player_y][player_x] = '0';
-            game->map[player_y + 1][player_x] = 'P';
-        }
-    }
-    else if (keycode == 97 || keycode == 65361)
-    {
-        if (game->map[player_y][player_x - 1] != '1')
-        {
-            game->map[player_y][player_x] = '0';
-            game->map[player_y][player_x - 1] = 'P';
-        }
-    }
-    else if (keycode == 100 || keycode == 65363)
-    {
-        if (game->map[player_y][player_x + 1] != '1')
-        {
-            game->map[player_y][player_x] = '0';
-            game->map[player_y][player_x + 1] = 'P';
-        }
-    }
-
-    return (0);
-}
-
 
 int	init_window(t_game *game, char **map)
 {
@@ -97,13 +44,15 @@ int	init_window(t_game *game, char **map)
 
 	draw_map(game, images, map);
 
-	// Duplicar el mapa y guardarlo en t_game
 	game->map = duplicate_map(map);
 	if (!game->map)
 	{
 		write(2, "Error al duplicar el mapa.\n", 26);
 		return (0);
 	}
+    game->img = images;
+    game->collectable_count = count_collectibles(map);
+    game->move_count = 0;
 
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_key_hook(game->win, key_hook, game);

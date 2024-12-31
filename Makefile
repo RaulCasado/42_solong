@@ -17,7 +17,8 @@ LIBS = $(LIBFT) $(MLX)
 
 SRC_DIR = src
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/init_map.c $(SRC_DIR)/map_checker.c $(SRC_DIR)/map_memory.c $(SRC_DIR)/has_valid_exit.c \
-			$(SRC_DIR)/map_checker_utils.c $(SRC_DIR)/init_window.c $(SRC_DIR)/player_position.c $(SRC_DIR)/images_draw.c
+			$(SRC_DIR)/map_checker_utils.c $(SRC_DIR)/init_window.c $(SRC_DIR)/player_position.c $(SRC_DIR)/images_draw.c \
+			$(SRC_DIR)/move_player.c $(SRC_DIR)/collectibles.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -38,5 +39,8 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+norm:
+	norminette $(SRCS) $(LIBFT_DIR) $(GNL_DIR)
 
 .PHONY: all clean fclean re

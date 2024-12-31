@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:27 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/30 14:01:47 by raul             ###   ########.fr       */
+/*   Updated: 2024/12/31 12:18:11 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ typedef struct s_game
 	void	*img;
 	int		img_width;
 	int		img_height;
-    char **map;
-    
+	char	**map;
+	int		move_count;
+	int		collectable_count;
+
 }			t_game;
 
 typedef struct s_images
@@ -51,10 +53,16 @@ int			is_map_valid_components(char **map);
 int			is_valid_path(char **map);
 int			close_window(t_game *game);
 int			init_window(t_game *game, char **map);
-void show_each_map_letter(char **map);
+void		show_each_map_letter(char **map);
 t_images	*load_images(t_game *game);
 void		draw_map(t_game *game, t_images *images, char **map);
 void		player_position(char **map, int *player_x, int *player_y);
-char **duplicate_map(char **map);
+char		**duplicate_map(char **map);
+int			count_collectibles(char **map);
+int			key_hook(int keycode, void *param);
+void		player_move(t_game *game, int x, int y, int dx, int dy);
+void		free_game(t_game *game);
+void		flood_fill(char **map, int x, int y);
+int			are_collectibles_blocked_by_exit(char **map);
 
 #endif
