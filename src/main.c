@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:14:27 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/31 14:58:01 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/01 20:06:05 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	validate_map(char **map)
 	if (!is_valid_path(map))
 		return (write_error("Error: El mapa no tiene un camino válido.\n",
 				map));
-	// check if the exit is blocking the collectibles
 	return (1);
 }
 
@@ -62,6 +61,6 @@ int	main(int argc, char **argv)
 		free_map(map);
 		return (EXIT_FAILURE);
 	}
-	free_map(map);
+	free_game(&game);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:27 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/31 12:18:11 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/01 20:07:41 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_game
 	char	**map;
 	int		move_count;
 	int		collectable_count;
+	char **original_map;
 
 }			t_game;
 
@@ -43,6 +44,12 @@ typedef struct s_images
 	void	*collectable;
 	void	*player;
 }			t_images;
+
+typedef struct s_position
+{
+	int	x;
+	int	y;
+}	t_position;
 
 char		**read_map_to_array(char *file);
 int			is_map_rectangular(char **map);
@@ -60,9 +67,12 @@ void		player_position(char **map, int *player_x, int *player_y);
 char		**duplicate_map(char **map);
 int			count_collectibles(char **map);
 int			key_hook(int keycode, void *param);
-void		player_move(t_game *game, int x, int y, int dx, int dy);
+void		player_move(t_game *game, t_position pos, t_position delta);
 void		free_game(t_game *game);
 void		flood_fill(char **map, int x, int y);
 int			are_collectibles_blocked_by_exit(char **map);
+void	restore_exit_position(t_game *game);
+void	restore_exit(t_game *game);
+int	did_exit_dissapear(t_game *game);
 
 #endif

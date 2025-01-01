@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 11:43:00 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/31 12:18:04 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:13:41 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	flood_fill_start_from_exit(char **map_copy, char **map)
 {
-	int x, y;
+	int	x;
+	int	y;
+
 	y = 0;
 	while (map[y])
 	{

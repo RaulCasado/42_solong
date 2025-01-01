@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:44:10 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/31 15:04:44 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:16:28 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ char	**remove_line_jump_end(char **map)
 	return (map);
 }
 
+static char	*allocate_and_copy_line(char *line)
+{
+	char	*new_line;
+
+	new_line = malloc(ft_strlen(line) + 1);
+	if (!new_line)
+		return (NULL);
+	ft_strlcpy(new_line, line, ft_strlen(line) + 1);
+	return (new_line);
+}
+
 static char	**read_lines_to_map(int fd, size_t line_count)
 {
 	char	**map;
@@ -61,17 +72,15 @@ static char	**read_lines_to_map(int fd, size_t line_count)
 	line = get_next_line(fd);
 	while (line)
 	{
-		map[i] = malloc(ft_strlen(line) + 1);
+		map[i] = allocate_and_copy_line(line);
+		free(line);
 		if (!map[i])
 		{
 			while (i-- > 0)
 				free(map[i]);
 			free(map);
-			free(line);
 			return (NULL);
 		}
-		ft_strlcpy(map[i], line, ft_strlen(line) + 1);
-		free(line);
 		i++;
 		line = get_next_line(fd);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   images_draw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:47:51 by raul              #+#    #+#             */
-/*   Updated: 2024/12/30 12:54:58 by raul             ###   ########.fr       */
+/*   Updated: 2025/01/01 19:28:59 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,48 @@ t_images	*load_images(t_game *game)
 	return (images);
 }
 
+static void	draw_tile(t_game *game, t_images *images, char tile, t_position pos)
+{
+	if (tile == '1')
+		mlx_put_image_to_window(game->mlx, game->win, images->wall, pos.x,
+			pos.y);
+	else if (tile == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, images->exit, pos.x,
+			pos.y);
+	else if (tile == 'C')
+		mlx_put_image_to_window(game->mlx, game->win, images->collectable,
+			pos.x, pos.y);
+	else if (tile == 'P')
+		mlx_put_image_to_window(game->mlx, game->win, images->player, pos.x,
+			pos.y);
+	else
+		mlx_put_image_to_window(game->mlx, game->win, images->background, pos.x,
+			pos.y);
+}
+
+static void	draw_row(t_game *game, t_images *images, char *row, int i)
+{
+	int			j;
+	t_position	pos;
+
+	j = 0;
+	while (row[j])
+	{
+		pos.x = j * TILE_SIZE;
+		pos.y = i * TILE_SIZE;
+		draw_tile(game, images, row[j], pos);
+		j++;
+	}
+}
+
 void	draw_map(t_game *game, t_images *images, char **map)
 {
-	int i;
-    int j;
-	int x;
-    int y;
+	int	i;
+
 	i = 0;
 	while (map[i])
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			x = j * TILE_SIZE;
-			y = i * TILE_SIZE;
-			if (map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, images->wall, x,
-					y);
-			else if (map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, images->exit, x,
-					y);
-			else if (map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win,
-					images->collectable, x, y);
-			else if (map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, images->player, x,
-					y);
-			else
-				mlx_put_image_to_window(game->mlx, game->win,
-					images->background, x, y);
-			j++;
-		}
+		draw_row(game, images, map[i], i);
 		i++;
 	}
 }
