@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:44:10 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/01 19:16:28 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:45:38 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	count_file_lines(int fd)
 	return (lines_count);
 }
 
-char	**remove_line_jump_end(char **map)
+static char	**remove_line_jump_end(char **map)
 {
 	int	i;
 	int	j;

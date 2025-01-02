@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:32:10 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/01 20:02:13 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:46:17 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	close_window(t_game *game)
 	exit(0);
 }
 
-int	setup_mlx(t_game *game, int width, int height)
+static int	setup_mlx(t_game *game, int width, int height)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -29,7 +29,7 @@ int	setup_mlx(t_game *game, int width, int height)
 	return (1);
 }
 
-int	initialize_game_resources(t_game *game, char **map)
+static int	initialize_game_resources(t_game *game, char **map)
 {
 	game->img = load_images(game);
 	if (!game->img)

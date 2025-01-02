@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   has_valid_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 11:36:02 by racasado          #+#    #+#             */
-/*   Updated: 2024/12/31 11:42:06 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:44:19 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**duplicate_map(char **map)
 	return (copy);
 }
 
-void	flood_fill(char **map, int x, int y)
+static void	flood_fill(char **map, int x, int y)
 {
 	if (x < 0 || y < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
 		return ;

@@ -3,17 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 22:12:48 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/01 20:06:53 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:50:17 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		did_exit_dissapear(t_game *game);
-void	restore_exit(t_game *game);
+static int	did_exit_dissapear(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'E')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+static void	restore_exit_position(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->original_map[i])
+	{
+		j = 0;
+		while (game->original_map[i][j])
+		{
+			if (game->original_map[i][j] == 'E')
+			{
+				game->map[i][j] = 'E';
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	restore_exit(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'E')
+				return ;
+			j++;
+		}
+		i++;
+	}
+	restore_exit_position(game);
+}
 
 int	key_hook(int keycode, void *param)
 {
@@ -61,66 +120,4 @@ void	player_move(t_game *game, t_position pos, t_position delta)
 	game->move_count++;
 	ft_putnbr_fd(game->move_count, 1);
 	ft_putchar_fd('\n', 1);
-}
-
-int	did_exit_dissapear(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'E')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-void	restore_exit(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'E')
-				return ;
-			j++;
-		}
-		i++;
-	}
-	restore_exit_position(game);
-}
-
-void	restore_exit_position(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->original_map[i])
-	{
-		j = 0;
-		while (game->original_map[i][j])
-		{
-			if (game->original_map[i][j] == 'E')
-			{
-				game->map[i][j] = 'E';
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:27 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/01 20:07:41 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:50:33 by raul             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "../42_libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
 
 typedef struct s_game
 {
@@ -32,7 +30,7 @@ typedef struct s_game
 	char	**map;
 	int		move_count;
 	int		collectable_count;
-	char **original_map;
+	char	**original_map;
 
 }			t_game;
 
@@ -47,9 +45,9 @@ typedef struct s_images
 
 typedef struct s_position
 {
-	int	x;
-	int	y;
-}	t_position;
+	int		x;
+	int		y;
+}			t_position;
 
 char		**read_map_to_array(char *file);
 int			is_map_rectangular(char **map);
@@ -69,10 +67,5 @@ int			count_collectibles(char **map);
 int			key_hook(int keycode, void *param);
 void		player_move(t_game *game, t_position pos, t_position delta);
 void		free_game(t_game *game);
-void		flood_fill(char **map, int x, int y);
-int			are_collectibles_blocked_by_exit(char **map);
-void	restore_exit_position(t_game *game);
-void	restore_exit(t_game *game);
-int	did_exit_dissapear(t_game *game);
 
 #endif

@@ -10,7 +10,6 @@ GNL_SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 GNL_OBJS = $(GNL_SRCS:.c=.o)
 INCLUDES = -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(SRC_DIR) -I/usr/include
 
-# Añadir minilibx para Linux
 MLX = -lmlx_Linux -lXext -lX11 -lm -lz
 
 LIBS = $(LIBFT) $(MLX)
@@ -18,7 +17,7 @@ LIBS = $(LIBFT) $(MLX)
 SRC_DIR = src
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/init_map.c $(SRC_DIR)/map_checker.c $(SRC_DIR)/map_memory.c $(SRC_DIR)/has_valid_exit.c \
 			$(SRC_DIR)/map_checker_utils.c $(SRC_DIR)/init_window.c $(SRC_DIR)/player_position.c $(SRC_DIR)/images_draw.c \
-			$(SRC_DIR)/move_player.c $(SRC_DIR)/collectibles.c
+			$(SRC_DIR)/move_player.c
 
 OBJS = $(SRCS:.c=.o)
 
