@@ -6,73 +6,11 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 22:12:48 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/08 13:56:15 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:43:33 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	did_exit_dissapear(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'E')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-static void	restore_exit_position(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->original_map[i])
-	{
-		j = 0;
-		while (game->original_map[i][j])
-		{
-			if (game->original_map[i][j] == 'E')
-			{
-				game->map[i][j] = 'E';
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	restore_exit(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'E')
-				return ;
-			j++;
-		}
-		i++;
-	}
-	restore_exit_position(game);
-}
 
 int	key_hook(int keycode, void *param)
 {
@@ -99,11 +37,6 @@ void	player_move(t_game *game, t_position pos, t_position delta)
 {
 	char	next_cell;
 
-	if (did_exit_dissapear(game))
-	{
-		restore_exit(game);
-		ft_putstr_fd("The exit has been restored.\n", 1);
-	}
 	next_cell = game->map[pos.y + delta.y][pos.x + delta.x];
 	if (next_cell == '1')
 		return ;
@@ -117,8 +50,10 @@ void	player_move(t_game *game, t_position pos, t_position delta)
 			close_window(game);
 		}
 	}
-	if (game->map[pos.y][pos.x] != 'E')
+	if (game->original_map[pos.y][pos.x] != 'E')
 		game->map[pos.y][pos.x] = '0';
+	else
+		game->map[pos.y][pos.x] = 'E';
 	game->map[pos.y + delta.y][pos.x + delta.x] = 'P';
 	game->move_count++;
 	ft_putnbr_fd(game->move_count, 1);

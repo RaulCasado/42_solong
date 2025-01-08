@@ -3,7 +3,7 @@ NAME = so_long
 
 # Compilador y flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -no-pie
+CFLAGS = -g
 
 # Librerías externas
 LIBFT_DIR = 42_libft
