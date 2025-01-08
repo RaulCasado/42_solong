@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:32:10 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/02 10:46:17 by raul             ###   ########.fr       */
+/*   Updated: 2025/01/08 13:48:46 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	initialize_game_resources(t_game *game, char **map)
 	if (!game->img)
 		return (0);
 	draw_map(game, game->img, map);
-	game->map = duplicate_map(map);
+	game->map = map;
 	if (!game->map)
 	{
 		write(2, "Error al duplicar el mapa.\n", 26);

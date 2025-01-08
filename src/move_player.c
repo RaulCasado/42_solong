@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 22:12:48 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/02 10:50:17 by raul             ###   ########.fr       */
+/*   Updated: 2025/01/08 13:56:15 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	player_move(t_game *game, t_position pos, t_position delta)
 	char	next_cell;
 
 	if (did_exit_dissapear(game))
+	{
 		restore_exit(game);
+		ft_putstr_fd("The exit has been restored.\n", 1);
+	}
 	next_cell = game->map[pos.y + delta.y][pos.x + delta.x];
 	if (next_cell == '1')
 		return ;

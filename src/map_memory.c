@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:31 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/01 20:08:35 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/08 13:47:26 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ char	**free_map(char **map)
 {
 	int	i;
 
+	if (!map)
+		return (NULL);
 	i = 0;
 	while (map[i])
 	{
-		free(map[i]);
+		if (map[i])
+			free(map[i]);
 		i++;
 	}
 	free(map);
@@ -44,9 +47,9 @@ static void	free_images(t_game *game, t_images *images)
 void	free_game(t_game *game)
 {
 	if (game->map)
-	{
 		free_map(game->map);
-	}
+	if (game->original_map)
+		free_map(game->original_map);
 	if (game->img)
 		free_images(game, game->img);
 	if (game->win)
