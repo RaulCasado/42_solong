@@ -6,11 +6,20 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:47:51 by raul              #+#    #+#             */
-/*   Updated: 2025/01/09 22:19:18 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:01:12 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	put_images_to_null(t_images *images)
+{
+	images->background = NULL;
+	images->wall = NULL;
+	images->exit = NULL;
+	images->collectable = NULL;
+	images->player = NULL;
+}
 
 t_images	*load_images(t_game *game)
 {
@@ -19,6 +28,7 @@ t_images	*load_images(t_game *game)
 	images = malloc(sizeof(t_images));
 	if (!images)
 		return (NULL);
+	put_images_to_null(images);
 	images->background = mlx_xpm_file_to_image(game->mlx,
 			"textures/background.xpm", &game->img_width, &game->img_height);
 	images->wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm",
@@ -32,7 +42,8 @@ t_images	*load_images(t_game *game)
 	if (!images->background || !images->wall || !images->exit
 		|| !images->collectable || !images->player)
 	{
-		free(images);
+		ft_putstr_fd("Error al cargar las texturas.\n", 2);
+		free_images(game, images);
 		return (NULL);
 	}
 	return (images);

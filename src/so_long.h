@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raul <raul@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:27 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/02 10:50:33 by raul             ###   ########.fr       */
+/*   Updated: 2025/01/10 13:00:49 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ int			count_collectibles(char **map);
 int			key_hook(int keycode, void *param);
 void		player_move(t_game *game, t_position pos, t_position delta);
 void		free_game(t_game *game);
+void		free_images(t_game *game, t_images *images);
+void		free_game_error(t_game *game);
 
 #endif
