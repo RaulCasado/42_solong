@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:32:10 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/09 20:13:04 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:51:48 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,11 @@ static int	initialize_game_resources(t_game *game, char **map)
 		return (0);
 	draw_map(game, game->img, map);
 	game->map = map;
-	if (!game->map)
-	{
-		write(2, "Error al duplicar el mapa.\n", 26);
-		return (0);
-	}
 	game->collectable_count = count_collectibles(map);
 	game->move_count = 0;
 	game->original_map = duplicate_map(map);
+	if (!game->original_map)
+		return (0);
 	return (1);
 }
 
