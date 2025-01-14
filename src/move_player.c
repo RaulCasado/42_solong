@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 22:12:48 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/08 17:43:33 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:17:04 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	player_move(t_game *game, t_position pos, t_position delta)
 		game->map[pos.y][pos.x] = 'E';
 	game->map[pos.y + delta.y][pos.x + delta.x] = 'P';
 	game->move_count++;
+	ft_putstr_fd("Move count: ", 1);
 	ft_putnbr_fd(game->move_count, 1);
 	ft_putchar_fd('\n', 1);
 }
