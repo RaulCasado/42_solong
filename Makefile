@@ -3,7 +3,7 @@ NAME = so_long
 
 # Compilador y flags
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -Wall -Wextra -Werror -no-pie
 
 # Librerías externas
 LIBFT_DIR = 42_libft
@@ -32,16 +32,20 @@ SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/init_map.c $(SRC_DIR)/map_checker.c $(SRC_DI
 OBJS = $(SRCS:.c=.o)
 
 # Reglas
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(MLX_DIR)/libmlx.a $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(OBJS) $(GNL_OBJS) $(LIBFT)
+$(MLX_DIR)/libmlx.a:
+	@$(MAKE) -C $(MLX_DIR)
+
+$(NAME): $(OBJS) $(GNL_OBJS) $(LIBFT) $(MLX_DIR)/libmlx.a
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(GNL_OBJS) $(LIBS)
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS) $(GNL_OBJS)
 
 fclean: clean
