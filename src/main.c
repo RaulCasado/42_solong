@@ -6,13 +6,13 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:14:27 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/10 13:01:40 by racasado         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:58:51 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static	int write_error(char *error, char **map)
+static int	write_error(char *error, char **map)
 {
 	write(2, error, ft_strlen(error));
 	if (map)
@@ -20,7 +20,7 @@ static	int write_error(char *error, char **map)
 	return (0);
 }
 
-static	int validate_map(char **map)
+static int	validate_map(char **map)
 {
 	if (!map)
 		return (write_error("Error: No se pudo cargar el mapa.\n", map));
@@ -30,18 +30,18 @@ static	int validate_map(char **map)
 		return (write_error("Error: El mapa no está cerrado.\n", map));
 	if (!is_map_valid_components(map))
 		return (write_error("Error: El mapa contiene componentes inválidos.\n",
-							map));
+				map));
 	if (!is_valid_path(map))
 		return (write_error("Error: El mapa no tiene un camino válido.\n",
-							map));
+				map));
 	return (1);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	char **map;
-	t_game game;
-	int res;
+	char	**map;
+	t_game	game;
+	int		res;
 
 	if (argc != 2)
 	{
