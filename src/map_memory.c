@@ -6,7 +6,7 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:31 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/14 11:59:28 by racasado         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:56:08 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_game(t_game *game)
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
 	free(game->mlx);
+	free(game);
 }
 
 void	free_game_error(t_game *game)
@@ -67,4 +68,5 @@ void	free_game_error(t_game *game)
 		mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	game->mlx = NULL;
+	free(game);
 }
