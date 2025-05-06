@@ -6,14 +6,14 @@
 /*   By: racasado <racasado@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:41:27 by racasado          #+#    #+#             */
-/*   Updated: 2025/01/10 13:00:49 by racasado         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:56:27 by racasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define TILE_SIZE 64
+# define TILE_SIZE 80
 
 # include "../42_gnl/get_next_line.h"
 # include "../42_libft/libft.h"
